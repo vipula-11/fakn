@@ -540,16 +540,16 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form">
+                        <div role="form">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Link to News Article</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                    <label for="urlTxt">Link to News Article</label>
+                                    <input type="text" class="form-control" id="urlTxt"
                                            placeholder="Enter news source">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Or Put the News Manually</label>
-                                    <textarea type="text" class="form-control" id="exampleInputPassword1"
+                                    <label for="conTxt">Or Put the News Manually</label>
+                                    <textarea type="text" class="form-control" id="conTxt"
                                               placeholder="news content"></textarea>
                                 </div>
                                 <div class="form-group">
@@ -566,9 +566,9 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-primary" onclick="submitT()">Submit</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <!-- /.box -->
 
@@ -1053,7 +1053,7 @@
             <!-- /.tab-pane -->
             <!-- Settings tab content -->
             <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
+                <div method="post">
                     <h3 class="control-sidebar-heading">General Settings</h3>
 
                     <div class="form-group">
@@ -1113,11 +1113,11 @@
                     <div class="form-group">
                         <label class="control-sidebar-subheading">
                             Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            <!--<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>-->
                         </label>
                     </div>
                     <!-- /.form-group -->
-                </form>
+                </div>
             </div>
             <!-- /.tab-pane -->
         </div>
@@ -1127,6 +1127,9 @@
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
+
+
+
 <!-- ./wrapper -->
 <script src="https://cdnjs.com/libraries/popper.js"></script>
 <!-- jQuery 3 -->
@@ -1136,6 +1139,21 @@
         crossorigin="anonymous"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="js/bootstrap.min.js"></script>
+
+<script>function submitT() {
+    var url = $("#urlTxt").val();
+    var content = $("#conTxt").val();
+    $.ajax({
+        type: "POST",
+        url: "http://192.168.43.184:7000/request/save?is_web=0&web_url="+url+"&content="+content,
+        data: {},
+        success: function () {
+
+        }
+    });
+}</script>
+
+
 
 <!-- FastClick -->
 <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
